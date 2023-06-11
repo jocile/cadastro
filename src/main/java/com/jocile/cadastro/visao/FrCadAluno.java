@@ -5,13 +5,18 @@
 package com.jocile.cadastro.visao;
 
 import com.jocile.cadastro.entidades.Aluno;
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 public class FrCadAluno extends javax.swing.JFrame {
 
+    private ArrayList<Aluno> lista;
+    
     public FrCadAluno() {
         initComponents();
 
+        lista = new ArrayList<>();
         this.resetarCampos(false);
     }
 
@@ -223,6 +228,7 @@ public class FrCadAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        //Preenchendo o objeto aluno
         Aluno a = new Aluno();
         a.setNome(edtNome.getText());
         a.setSexo(edtSexo.getText().charAt(0));
@@ -238,10 +244,23 @@ public class FrCadAluno extends javax.swing.JFrame {
 
         a.setMatricula(edtMatricula.getText());
 
-        edtResultado.setText(a.toString()); //mostra o resultado
+        //Inserir o aluno na lista
+        this.lista.add(a);
+        //mostra o resultado
+        edtResultado.setText(this.mostrarLista());
+                
         this.resetarCampos(false);
     }//GEN-LAST:event_btnSalvarActionPerformed
 
+    public String mostrarLista(){
+        String listaCompleta = "";
+        for (int i = 0; i < lista.size(); i++) {
+            Aluno aux = lista.get(i);
+            listaCompleta = listaCompleta + aux.toString();
+        }
+        return listaCompleta;
+    }
+    
     private void edtNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtNomeKeyReleased
         if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
             edtSexo.requestFocus();
