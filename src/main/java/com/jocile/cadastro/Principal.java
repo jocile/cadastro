@@ -2,16 +2,18 @@ package com.jocile.cadastro;
 
 import com.jocile.cadastro.entidades.Aluno;
 import com.jocile.cadastro.entidades.Disciplina;
+import com.jocile.cadastro.visao.FrCadAluno;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Principal {
 
     public static void main(String[] args) {
+        new FrCadAluno().setVisible(true);
         //Criar uma disciplina
-        Disciplina disciplina1 = new Disciplina();
-        preencher(disciplina1);
-        imprimir(disciplina1);
+        //Disciplina disciplina1 = new Disciplina();
+        //preencher(disciplina1);
+        //imprimir(disciplina1);
         
     }
     
