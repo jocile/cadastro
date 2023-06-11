@@ -11,7 +11,7 @@ public class FrCadAluno extends javax.swing.JFrame {
 
     public FrCadAluno() {
         initComponents();
-        
+
         this.resetarCampos(false);
     }
 
@@ -53,6 +53,24 @@ public class FrCadAluno extends javax.swing.JFrame {
         lblSexo.setText("Sexo:");
 
         lblIdade.setText("Idade:");
+
+        edtNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtNomeKeyReleased(evt);
+            }
+        });
+
+        edtSexo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtSexoKeyReleased(evt);
+            }
+        });
+
+        edtIdade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtIdadeKeyReleased(evt);
+            }
+        });
 
         btnNovo.setText("Novo");
         btnNovo.addActionListener(new java.awt.event.ActionListener() {
@@ -196,8 +214,8 @@ public class FrCadAluno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        
         this.resetarCampos(true);
+        edtNome.requestFocus();
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -208,21 +226,39 @@ public class FrCadAluno extends javax.swing.JFrame {
         Aluno a = new Aluno();
         a.setNome(edtNome.getText());
         a.setSexo(edtSexo.getText().charAt(0));
-        
+
         //Testa se o campo idade foi preenchido
         String idadeLida = edtIdade.getText();
         if (!idadeLida.isEmpty()) {
-          int aux = Integer.parseInt(idadeLida);
-          a.setIdade(aux);
-        }else{
-          JOptionPane.showMessageDialog(this,"Campo Idade obrigatório. ");
+            int aux = Integer.parseInt(idadeLida);
+            a.setIdade(aux);
+        } else {
+            JOptionPane.showMessageDialog(this, "Campo Idade obrigatório. ");
         }
-        
+
         a.setMatricula(edtMatricula.getText());
 
         edtResultado.setText(a.toString()); //mostra o resultado
         this.resetarCampos(false);
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void edtNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtNomeKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            edtSexo.requestFocus();
+        }
+    }//GEN-LAST:event_edtNomeKeyReleased
+
+    private void edtSexoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtSexoKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            edtIdade.requestFocus();
+        }
+    }//GEN-LAST:event_edtSexoKeyReleased
+
+    private void edtIdadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtIdadeKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            edtMatricula.requestFocus();
+        }
+    }//GEN-LAST:event_edtIdadeKeyReleased
 
     /**
      * @param args the command line arguments
@@ -282,16 +318,16 @@ public class FrCadAluno extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void resetarCampos(boolean flag) {
-    edtNome.setEnabled(flag);
-    edtSexo.setEnabled(flag);
-    edtIdade.setEnabled(flag);
-    edtMatricula.setEnabled(flag);
+        edtNome.setEnabled(flag);
+        edtSexo.setEnabled(flag);
+        edtIdade.setEnabled(flag);
+        edtMatricula.setEnabled(flag);
 
-    if (!flag){    
-      edtNome.setText("");
-      edtSexo.setText("");
-      edtIdade.setText("");
-      edtMatricula.setText("");
+        if (!flag) {
+            edtNome.setText("");
+            edtSexo.setText("");
+            edtIdade.setText("");
+            edtMatricula.setText("");
+        }
     }
-}
 }
