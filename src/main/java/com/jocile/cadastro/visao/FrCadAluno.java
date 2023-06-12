@@ -7,10 +7,13 @@ import javax.swing.JOptionPane;
 public class FrCadAluno extends javax.swing.JFrame {
 
     private ArrayList<Aluno> lista;
+    private int novoOuEditar;//=0 caso seja clicado no botão Novo ou =1 no editar
+    private int indiceDeEdicao;
 
     public FrCadAluno() {
         initComponents();
-
+        novoOuEditar = 0;
+        indiceDeEdicao = -1;
         lista = new ArrayList<>();
         this.resetarCampos(false);
     }
@@ -219,6 +222,7 @@ public class FrCadAluno extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        this.novoOuEditar = 0;
         this.resetarCampos(true);
         edtNome.requestFocus();
     }//GEN-LAST:event_btnNovoActionPerformed
@@ -230,8 +234,17 @@ public class FrCadAluno extends javax.swing.JFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         //Preenchendo o objeto aluno
         Aluno a = this.copiarCamposParaLista();
-        //Inserir o aluno na lista
-        this.lista.add(a);
+
+        if (novoOuEditar == 0) { //Inserir o aluno na lista           
+            this.lista.add(a);
+        }else if(novoOuEditar == 1){//Atualização de um registro            
+            Aluno b = this.lista.get(indiceDeEdicao);
+            b.setNome(a.getNome());
+            b.setSexo(a.getSexo());
+            b.setIdade(a.getIdade());
+            b.setMatricula(a.getMatricula());
+        }
+
         //mostra o resultado
         edtResultado.setText(this.mostrarLista());
 
@@ -266,14 +279,16 @@ public class FrCadAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_edtIdadeKeyReleased
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        //Pegar o valor informado
+        this.novoOuEditar = 1;
+
+//Pegar o valor informado
         String matriculaInformada = JOptionPane.showInputDialog("Informe o aluno a ser editado", "<informe a matrícula>");
 
         //Pesquisar o aluno
-        int index = this.pesquisarAluno(matriculaInformada);
+        indiceDeEdicao = this.pesquisarAluno(matriculaInformada);
 
         //Fazer a edição do aluno
-        this.copiarDaListaParaCampos(index);
+        this.copiarDaListaParaCampos(indiceDeEdicao);
         this.hideShowCampos(true);
     }//GEN-LAST:event_btnEditarActionPerformed
 
