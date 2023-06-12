@@ -104,6 +104,11 @@ public class FrCadAluno extends javax.swing.JFrame {
         });
 
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         lblMatricula.setText("Matrícula:");
 
@@ -291,6 +296,19 @@ public class FrCadAluno extends javax.swing.JFrame {
         this.copiarDaListaParaCampos(indiceDeEdicao);
         this.hideShowCampos(true);
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        String matriculaInformada = JOptionPane.showInputDialog("Informe o aluno a ser excluido", "<informe a matrícula>");
+        
+        int index = this.pesquisarAluno(matriculaInformada);
+        
+        this.lista.remove(index);
+        
+        //mostra o resultado
+        edtResultado.setText(this.mostrarLista());
+
+        this.resetarCampos(false);
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     public int pesquisarAluno(String matriculaProcurada) {
         for (int i = 0; i <= this.lista.size() - 1; i++) {
