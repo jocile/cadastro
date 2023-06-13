@@ -8,7 +8,7 @@ package com.jocile.cadastro6;
  *
  * @author aluno
  */
-public class Cadastro6 {
+public class Principal {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
