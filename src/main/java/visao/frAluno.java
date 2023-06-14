@@ -16,11 +16,7 @@ public class frAluno extends javax.swing.JFrame {
     public frAluno() {
         initComponents();
 
-        edtNome.setEnabled(false);
-        edtSexo.setEnabled(false);
-        edtIdade.setEnabled(false);
-        edtMatricula.setEnabled(false);
-        edtAnoDeIngresso.setEnabled(false);
+        this.resetarCampos(false);
     }
 
     /**
@@ -85,6 +81,11 @@ public class frAluno extends javax.swing.JFrame {
         });
 
         btCancelar.setText("Cancelar");
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
 
         btEditar.setText("Editar");
 
@@ -209,16 +210,33 @@ public class frAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_edtNomeActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
-        edtNome.setEnabled(true);
-        edtSexo.setEnabled(true);
-        edtIdade.setEnabled(true);
-        edtMatricula.setEnabled(true);
-        edtAnoDeIngresso.setEnabled(true);
+        this.resetarCampos(true);
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btSalvarActionPerformed
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        this.resetarCampos(false);
+    }//GEN-LAST:event_btCancelarActionPerformed
+
+    private void resetarCampos(boolean flag) {
+        edtNome.setEnabled(flag);
+        edtSexo.setEnabled(flag);
+        edtIdade.setEnabled(flag);
+        edtMatricula.setEnabled(flag);
+        edtAnoDeIngresso.setEnabled(flag);
+
+        if (!flag) {
+            edtNome.setText("");
+            edtSexo.setText("");
+            edtIdade.setText("");
+            edtMatricula.setText("");
+            edtAnoDeIngresso.setText("");
+        }
+
+    }
 
     /**
      * @param args the command line arguments
