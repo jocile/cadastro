@@ -1,7 +1,7 @@
 
 package com.jocile.cadastro6.entidades;
 
-class Professor {
+public class Professor {
     private String nome;
     private char sexo;
     private int idade;
@@ -48,6 +48,11 @@ class Professor {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    @Override
+    public String toString() {
+        return "Professor{" + "nome=" + nome + ", sexo=" + sexo + ", idade=" + idade + ", cpf=" + cpf + '}';
     }
     
     
