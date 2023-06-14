@@ -15,6 +15,12 @@ public class frAluno extends javax.swing.JFrame {
      */
     public frAluno() {
         initComponents();
+
+        edtNome.setEnabled(false);
+        edtSexo.setEnabled(false);
+        edtIdade.setEnabled(false);
+        edtMatricula.setEnabled(false);
+        edtAnoDeIngresso.setEnabled(false);
     }
 
     /**
@@ -27,7 +33,7 @@ public class frAluno extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtResultado = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         lbTitulo = new javax.swing.JLabel();
         lbNome = new javax.swing.JLabel();
@@ -48,9 +54,9 @@ public class frAluno extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtResultado.setColumns(20);
+        txtResultado.setRows(5);
+        jScrollPane1.setViewportView(txtResultado);
 
         lbTitulo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbTitulo.setText("Cadastro de Alunos");
@@ -258,12 +264,12 @@ public class frAluno extends javax.swing.JFrame {
     private javax.swing.JTextField edtSexo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lbAnodIngresso;
     private javax.swing.JLabel lbIdade;
     private javax.swing.JLabel lbMatricula;
     private javax.swing.JLabel lbNome;
     private javax.swing.JLabel lbSexo;
     private javax.swing.JLabel lbTitulo;
+    private javax.swing.JTextArea txtResultado;
     // End of variables declaration//GEN-END:variables
 }
