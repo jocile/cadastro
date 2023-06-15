@@ -5,6 +5,7 @@
 package visao;
 
 import com.jocile.cadastro6.entidades.Aluno;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,9 +17,12 @@ public class frAluno extends javax.swing.JFrame {
     /**
      * Creates new form frAluno
      */
+    private ArrayList<Aluno> lista;
+
     public frAluno() {
         initComponents();
 
+        lista = new ArrayList<>();
         this.resetarCampos(false);
     }
 
@@ -208,7 +212,7 @@ public class frAluno extends javax.swing.JFrame {
                     .addComponent(edtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbAnodIngresso)
                     .addComponent(edtAnoDeIngresso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 28, Short.MAX_VALUE))
+                .addGap(0, 35, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -230,7 +234,7 @@ public class frAluno extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
                 .addGap(14, 14, 14))
         );
 
@@ -267,9 +271,22 @@ public class frAluno extends javax.swing.JFrame {
         aux = Integer.parseInt(edtAnoDeIngresso.getText());
         a.setAnoDeIngresso(aux);
 
-        txtResultado.setText(a.toString()); //mostra o resultado
+        //Mostrando a lista de alunos
+        this.lista.add(a);
+        txtResultado.setText(this.mostrarLista());
+        //txtResultado.setText(a.toString()); //mostrava o resultado
         this.resetarCampos(false);
     }//GEN-LAST:event_btSalvarActionPerformed
+
+    public String mostrarLista() {
+        String listaCompleta = "";
+
+        for (int i = 0; i <= lista.size() - 1; i++) {
+            Aluno aux = lista.get(i);
+            listaCompleta = listaCompleta + aux.toString();
+        }
+        return listaCompleta;
+    }
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
         this.resetarCampos(false);
@@ -282,27 +299,27 @@ public class frAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_edtNomeKeyReleased
 
     private void edtSexoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtSexoKeyReleased
-        if(evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER){
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
             edtIdade.requestFocus();
-  }
+        }
     }//GEN-LAST:event_edtSexoKeyReleased
 
     private void edtIdadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtIdadeKeyReleased
-        if(evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER){
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
             edtMatricula.requestFocus();
-  }
+        }
     }//GEN-LAST:event_edtIdadeKeyReleased
 
     private void edtMatriculaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtMatriculaKeyReleased
-        if(evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER){
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
             edtAnoDeIngresso.requestFocus();
-  }
+        }
     }//GEN-LAST:event_edtMatriculaKeyReleased
 
     private void edtAnoDeIngressoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtAnoDeIngressoKeyReleased
-        if(evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER){
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
             btSalvar.requestFocus();
-  }
+        }
     }//GEN-LAST:event_edtAnoDeIngressoKeyReleased
 
     private void resetarCampos(boolean flag) {
