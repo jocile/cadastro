@@ -4,6 +4,10 @@
  */
 package visao;
 
+import com.jocile.cadastro6.entidades.Aluno;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author aluno
@@ -214,7 +218,19 @@ public class frAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        // TODO add your handling code here:
+        Aluno a = new Aluno();
+        a.setNome(edtNome.getText());
+        a.setSexo(edtSexo.getText().charAt(0));
+        int aux = Integer.parseInt(edtIdade.getText());
+        a.setIdade(aux);
+        a.setMatricula(edtMatricula.getText());
+        //SimpleDateFormat formato = new SimpleDateFormat("yyyy");
+        //Date ano = formato.parse(edtAnoDeIngresso.getText());
+        aux = Integer.parseInt(edtAnoDeIngresso.getText());
+        a.setAnoDeIngresso(aux);
+
+        txtResultado.setText(a.toString()); //mostra o resultado
+        this.resetarCampos(false);
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed

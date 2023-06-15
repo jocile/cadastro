@@ -1,15 +1,13 @@
 package com.jocile.cadastro6.entidades;
 
-import java.util.Date;
-
 public class Aluno {
     private String nome;
     private char sexo;
     private int idade;
     private String matricula;
-    private Date anoDeIngresso;
+    private int anoDeIngresso;
 
-    public Aluno(String nome, char sexo, int idade, String matricula, Date anoDeIngresso) {
+    public Aluno(String nome, char sexo, int idade, String matricula, int anoDeIngresso) {
         this.nome = nome;
         this.sexo = sexo;
         this.idade = idade;
@@ -52,11 +50,11 @@ public class Aluno {
         this.matricula = matricula;
     }
 
-    public Date getAnoDeIngresso() {
+    public int getAnoDeIngresso() {
         return anoDeIngresso;
     }
 
-    public void setAnoDeIngresso(Date anoDeIngresso) {
+    public void setAnoDeIngresso(int anoDeIngresso) {
         this.anoDeIngresso = anoDeIngresso;
     }
 
