@@ -75,6 +75,35 @@ public class frAluno extends javax.swing.JFrame {
                 edtNomeActionPerformed(evt);
             }
         });
+        edtNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtNomeKeyReleased(evt);
+            }
+        });
+
+        edtSexo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtSexoKeyReleased(evt);
+            }
+        });
+
+        edtIdade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtIdadeKeyReleased(evt);
+            }
+        });
+
+        edtMatricula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtMatriculaKeyReleased(evt);
+            }
+        });
+
+        edtAnoDeIngresso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                edtAnoDeIngressoKeyReleased(evt);
+            }
+        });
 
         btNovo.setText("Novo");
         btNovo.addActionListener(new java.awt.event.ActionListener() {
@@ -215,6 +244,7 @@ public class frAluno extends javax.swing.JFrame {
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
         this.resetarCampos(true);
+        edtNome.requestFocus();
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
@@ -244,6 +274,36 @@ public class frAluno extends javax.swing.JFrame {
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
         this.resetarCampos(false);
     }//GEN-LAST:event_btCancelarActionPerformed
+
+    private void edtNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtNomeKeyReleased
+        if (evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER) {
+            edtSexo.requestFocus();
+        }
+    }//GEN-LAST:event_edtNomeKeyReleased
+
+    private void edtSexoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtSexoKeyReleased
+        if(evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER){
+            edtIdade.requestFocus();
+  }
+    }//GEN-LAST:event_edtSexoKeyReleased
+
+    private void edtIdadeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtIdadeKeyReleased
+        if(evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER){
+            edtMatricula.requestFocus();
+  }
+    }//GEN-LAST:event_edtIdadeKeyReleased
+
+    private void edtMatriculaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtMatriculaKeyReleased
+        if(evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER){
+            edtAnoDeIngresso.requestFocus();
+  }
+    }//GEN-LAST:event_edtMatriculaKeyReleased
+
+    private void edtAnoDeIngressoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_edtAnoDeIngressoKeyReleased
+        if(evt.getKeyChar() == java.awt.event.KeyEvent.VK_ENTER){
+            btSalvar.requestFocus();
+  }
+    }//GEN-LAST:event_edtAnoDeIngressoKeyReleased
 
     private void resetarCampos(boolean flag) {
         edtNome.setEnabled(flag);
