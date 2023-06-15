@@ -60,7 +60,12 @@ public class Aluno {
 
     @Override
     public String toString() {
-        return "Aluno{" + "nome=" + nome + ", sexo=" + sexo + ", idade=" + idade + ", matricula=" + matricula + ", anoDeIngresso=" + anoDeIngresso + '}';
+        return ("__________________________\n"
+                + "Nome: " + this.nome + "\n"
+                + "Sexo:" + this.sexo + "\n"
+                + "Idade: " + this.idade + "\n"
+                + "Matricula: " + this.matricula + "\n"
+                + "__________________________\n");
     }
     
     
