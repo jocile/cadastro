@@ -5,6 +5,7 @@
 package visao;
 
 import com.jocile.cadastro6.entidades.Aluno;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -218,11 +219,19 @@ public class frAluno extends javax.swing.JFrame {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         Aluno a = new Aluno();
+        int aux;
         a.setNome(edtNome.getText());
         a.setSexo(edtSexo.getText().charAt(0));
-        int aux = Integer.parseInt(edtIdade.getText());
-        a.setIdade(aux);
-        a.setMatricula(edtMatricula.getText());
+        String idadeLida = edtIdade.getText();
+        if (!idadeLida.isEmpty()) {
+            aux = Integer.parseInt(edtIdade.getText());
+            a.setIdade(aux);
+            a.setMatricula(edtMatricula.getText());
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Campo Idade obrigatório. ");
+        }
+
         //SimpleDateFormat formato = new SimpleDateFormat("yyyy");
         //Date ano = formato.parse(edtAnoDeIngresso.getText());
         aux = Integer.parseInt(edtAnoDeIngresso.getText());
