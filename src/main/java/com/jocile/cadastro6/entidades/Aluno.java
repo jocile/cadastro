@@ -65,6 +65,7 @@ public class Aluno {
                 + "Sexo:" + this.sexo + "\n"
                 + "Idade: " + this.idade + "\n"
                 + "Matricula: " + this.matricula + "\n"
+                + "Ano de ingresso: " + this.getAnoDeIngresso() + "\n"
                 + "__________________________\n");
     }
     

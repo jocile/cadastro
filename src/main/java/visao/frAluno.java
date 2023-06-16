@@ -18,9 +18,14 @@ public class frAluno extends javax.swing.JFrame {
      * Creates new form frAluno
      */
     private ArrayList<Aluno> lista;
+    private int novoOuEditar;//=0 caso seja clicado no botão Novo ou =1 no editar
+    private int indiceDeEdicao;
 
     public frAluno() {
         initComponents();
+        
+        novoOuEditar = 0;
+        indiceDeEdicao = -1;
 
         lista = new ArrayList<>();
         this.resetarCampos(false);
@@ -124,6 +129,11 @@ public class frAluno extends javax.swing.JFrame {
         });
 
         btEditar.setText("Editar");
+        btEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEditarActionPerformed(evt);
+            }
+        });
 
         btSalvar.setText("Salvar");
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -247,32 +257,27 @@ public class frAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_edtNomeActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
+        novoOuEditar = 0;
         this.resetarCampos(true);
-        edtNome.requestFocus();
+        edtNome.requestFocus();        
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        Aluno a = new Aluno();
-        int aux;
-        a.setNome(edtNome.getText());
-        a.setSexo(edtSexo.getText().charAt(0));
-        String idadeLida = edtIdade.getText();
-        if (!idadeLida.isEmpty()) {
-            aux = Integer.parseInt(edtIdade.getText());
-            a.setIdade(aux);
-            a.setMatricula(edtMatricula.getText());
-        } else {
-            JOptionPane.showMessageDialog(this,
-                    "Campo Idade obrigatório. ");
-        }
-
-        //SimpleDateFormat formato = new SimpleDateFormat("yyyy");
-        //Date ano = formato.parse(edtAnoDeIngresso.getText());
-        aux = Integer.parseInt(edtAnoDeIngresso.getText());
-        a.setAnoDeIngresso(aux);
+        //preenche dos campos de texto para o aluno 
+        Aluno a = this.copiarCamposParaLista();
 
         //Mostrando a lista de alunos
-        this.lista.add(a);
+        if (novoOuEditar == 0){
+            this.lista.add(a);
+        }else if(novoOuEditar == 1){
+            Aluno b = this.lista.get(indiceDeEdicao);
+            b.setNome(a.getNome());
+            b.setSexo(a.getSexo());
+            b.setIdade(a.getIdade());
+            b.setMatricula(a.getMatricula());
+            b.setAnoDeIngresso(a.getAnoDeIngresso()); 
+        }
+        
         txtResultado.setText(this.mostrarLista());
         //txtResultado.setText(a.toString()); //mostrava o resultado
         this.resetarCampos(false);
@@ -322,12 +327,59 @@ public class frAluno extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_edtAnoDeIngressoKeyReleased
 
+    private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
+        this.novoOuEditar = 1;
+        //Pegar o valor informado (Matricula)
+        String matriculaInformada = JOptionPane.showInputDialog(
+                "Informe o Aluno a ser editado",
+                "<informe a matricula>");
+        //Pesquisar na minha lista quem tem a matricula informada.
+        indiceDeEdicao = this.pesquisarAluno(matriculaInformada);
+        this.preencheCamposParaEdicao(indiceDeEdicao);
+        this.hideShow(true);// mostra os campos
+        //copiar dos campos de texto para a lista
+        
+    }//GEN-LAST:event_btEditarActionPerformed
+
+    public int pesquisarAluno(String matriculaProcurada) {
+        for (int i = 0; i <= this.lista.size() - 1; i++) {
+            if (this.lista.get(i).getMatricula().equals(matriculaProcurada)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void preencheCamposParaEdicao(int index) {
+        Aluno a = this.lista.get(index);
+        edtNome.setText(a.getNome());
+        edtSexo.setText(a.getSexo() + "");
+        edtIdade.setText(a.getIdade() + "");
+        edtMatricula.setText(a.getMatricula());
+        edtAnoDeIngresso.setText(a.getAnoDeIngresso()+ "");
+    }
+
+    public Aluno copiarCamposParaLista() {
+        Aluno a = new Aluno();
+        int aux;
+        a.setNome(edtNome.getText());
+        a.setSexo(edtSexo.getText().charAt(0));
+        String idadeLida = edtIdade.getText();
+        if (!idadeLida.isEmpty()) {
+            aux = Integer.parseInt(edtIdade.getText());
+            a.setIdade(aux);
+            
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Campo Idade obrigatório. ");
+        }
+        a.setMatricula(edtMatricula.getText());
+        aux = Integer.parseInt(edtAnoDeIngresso.getText());
+        a.setAnoDeIngresso(aux);
+        return a;
+    }
     private void resetarCampos(boolean flag) {
-        edtNome.setEnabled(flag);
-        edtSexo.setEnabled(flag);
-        edtIdade.setEnabled(flag);
-        edtMatricula.setEnabled(flag);
-        edtAnoDeIngresso.setEnabled(flag);
+        hideShow(flag);        
 
         if (!flag) {
             edtNome.setText("");
@@ -339,7 +391,14 @@ public class frAluno extends javax.swing.JFrame {
 
     }
 
-    /**
+    private void hideShow(boolean flag) {
+        edtNome.setEnabled(flag);
+        edtSexo.setEnabled(flag);
+        edtIdade.setEnabled(flag);
+        edtMatricula.setEnabled(flag);
+        edtAnoDeIngresso.setEnabled(flag);
+}
+        /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
