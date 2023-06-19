@@ -143,6 +143,11 @@ public class frAluno extends javax.swing.JFrame {
         });
 
         btExcluir.setText("Excluir");
+        btExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -340,6 +345,21 @@ public class frAluno extends javax.swing.JFrame {
         //copiar dos campos de texto para a lista
         
     }//GEN-LAST:event_btEditarActionPerformed
+
+    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
+        String matriculaInformada = JOptionPane.showInputDialog(
+                "Informe o aluno a ser excluido",
+                "<informe a matrícula>");
+        
+        int index = this.pesquisarAluno(matriculaInformada);
+        
+        this.lista.remove(index);
+        
+        //mostra o resultado
+        txtResultado.setText(this.mostrarLista());
+
+        this.resetarCampos(false);
+    }//GEN-LAST:event_btExcluirActionPerformed
 
     public int pesquisarAluno(String matriculaProcurada) {
         for (int i = 0; i <= this.lista.size() - 1; i++) {
